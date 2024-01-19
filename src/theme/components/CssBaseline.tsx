@@ -11,25 +11,25 @@ const CssBaseline: Components<Omit<Theme, 'components'>>['MuiCssBaseline'] = {
       WebkitAppearance: 'none',
       width: 6,
       height: 6,
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
     },
 
     '&::-webkit-scrollbar-track': {
-      margin: 9
+      margin: 9,
     },
 
     '&::-webkit-scrollbar-thumb': {
       visibility: 'hidden',
       borderRadius: 3,
-      backgroundColor: grey[300]
+      backgroundColor: grey[300],
     },
 
     '&:hover, &:focus': {
       '&::-webkit-scrollbar, &::-webkit-scrollbar-thumb': {
-        visibility: 'visible'
-      }
-    }
-  }
+        visibility: 'visible',
+      },
+    },
+  },
 };
 
 export default CssBaseline;

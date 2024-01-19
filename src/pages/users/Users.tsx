@@ -1,16 +1,10 @@
-import { Button, IconButton } from '@mui/material';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import EditIcon from '@mui/icons-material/Edit';
+import { DataGrid, GridColDef, GridToolbar, GridToolbarContainer } from '@mui/x-data-grid';
 import AddUser from './AddUser';
-import { collection } from 'firebase/firestore';
-import { db } from 'services/firebase';
-import { useEffect } from 'react';
-import { currencyFormat, getFsData } from 'services/helpers/utils';
 import useUsersFetch from 'hooks/firebase/useUsersFetch';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useConfirmation } from 'providers/ConfirmationProvider';
-import useUserDelete from 'hooks/firebase/useUserDelete';
+import ActionButtons from './ActionButtons';
+import { useUsersStore } from 'services/stores/usersStore';
+import { Button } from '@mui/material';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 30 },
@@ -18,56 +12,72 @@ const columns: GridColDef[] = [
     field: 'name',
     headerName: 'Name',
     width: 150,
-    editable: true,
   },
   {
     field: 'details',
     headerName: 'Details',
     width: 200,
-    editable: true,
   },
   {
     field: 'amount',
     headerName: 'amount',
     width: 100,
-    editable: true,
     renderCell: (params) => `${params.row.amount} /-`,
   },
   {
-    field: 'action',
-    headerName: '',
-    sortable: false,
-    width: 60,
-    headerClassName: 'action',
-    cellClassName: 'action',
+    field: 'actions',
+    type: 'actions',
+    headerName: 'Actions',
+    width: 100,
+    cellClassName: 'actions',
+    getActions: ActionButtons,
   },
 ];
 
-const usersRef = collection(db, 'users');
+const CustomToolbar = (props) => {
+  const { setOpenModal } = useUsersStore();
+  const handleClick = () => {
+    setOpenModal(true);
+  };
+
+  return (
+    <GridToolbarContainer sx={{ justifyContent: 'space-between' }}>
+      <Button variant="contained" disableElevation size="small" onClick={handleClick}>
+        Add User
+      </Button>
+      <GridToolbar {...props} />
+    </GridToolbarContainer>
+  );
+};
 
 const Users = () => {
-  const { isLoading, data } = useUsersFetch();
+  const { rows, setIsLoading, isLoading } = useUsersStore();
+  useUsersFetch(setIsLoading);
 
   return (
     <Box sx={{ width: '100%' }}>
       <AddUser />
-      <DataGrid
-        rows={data}
-        loading={isLoading}
-        columns={columns}
-        // initialState={{
-        //   pagination: {
-        //     paginationModel: {
-        //       pamountSize: -1
-        //     }
-        //   }
-        // }}
-        // pamountSizeOptions={[5]}
-        onCellEditStop={(params, event) => {
-          console.log({ params, event });
-        }}
-        disableRowSelectionOnClick
-      />
+      <Box sx={{ height: 400 }}>
+        <DataGrid
+          rows={rows}
+          loading={isLoading}
+          columns={columns}
+          disableRowSelectionOnClick
+          disableColumnFilter
+          disableColumnSelector
+          disableDensitySelector
+          disableVirtualization
+          disableColumnMenu
+          slots={{ toolbar: CustomToolbar }}
+          slotProps={{
+            toolbar: {
+              showQuickFilter: true,
+              csvOptions: { disableToolbarButton: true },
+              printOptions: { disableToolbarButton: true },
+            },
+          }}
+        />
+      </Box>
     </Box>
   );
 };

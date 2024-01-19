@@ -1,6 +1,8 @@
 export interface User {
-  id: string;
+  uuid: string;
+  id: number;
   name: string;
   details: string;
   amount: number;
+  created_at?: string | Date;
 }

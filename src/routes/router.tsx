@@ -4,7 +4,7 @@ import MainLayout from 'layout/MainLayout';
 import Home from 'pages/home/Home';
 import paths from './paths';
 import Users from 'pages/users/Users';
-import Test from 'pages/users/Test';
+// import Test from 'pages/users/Test';
 
 export const routes = [
   {
@@ -22,10 +22,10 @@ export const routes = [
             path: paths.users,
             element: <Users />,
           },
-          {
-            path: 'test',
-            element: <Test />,
-          },
+          // {
+          //   path: 'test',
+          //   element: <Test />,
+          // },
         ],
       },
     ],

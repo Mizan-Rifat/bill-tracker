@@ -7,13 +7,13 @@ const columns: GridColDef[] = [
     field: 'name',
     headerName: 'Name',
     width: 150,
-    editable: true
+    editable: true,
   },
   {
     field: 'details',
     headerName: 'Details',
     width: 200,
-    editable: true
+    editable: true,
   },
   {
     field: 'amount',
@@ -21,8 +21,8 @@ const columns: GridColDef[] = [
     type: 'number',
     width: 110,
     editable: true,
-    align: 'center'
-  }
+    align: 'center',
+  },
 ];
 
 const rows = [
@@ -30,56 +30,56 @@ const rows = [
     id: 1,
     name: 'Jon',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 14
+    amount: 14,
   },
   {
     id: 2,
     name: 'Cersei',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 31
+    amount: 31,
   },
   {
     id: 3,
     name: 'Jaime',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 31
+    amount: 31,
   },
   {
     id: 4,
     name: 'Arya',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 11
+    amount: 11,
   },
   {
     id: 5,
     name: 'Daenerys',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: null
+    amount: null,
   },
   {
     id: 6,
     name: 'Hello',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 150
+    amount: 150,
   },
   {
     id: 7,
     name: 'Ferrara',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 44
+    amount: 44,
   },
   {
     id: 8,
     name: 'Rossini',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 36
+    amount: 36,
   },
   {
     id: 9,
     name: 'Harvey',
     details: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    amount: 65
-  }
+    amount: 65,
+  },
 ];
 
 const Home = () => {

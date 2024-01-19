@@ -1,4 +1,4 @@
-export const getFsData = (doc) => ({ ...doc.data(), id: doc.id });
+export const getFsData = (doc) => ({ ...doc.data(), uuid: doc.id });
 
 export const currencyFormat = (amount: number, options: Intl.NumberFormatOptions = {}) => {
   return new Intl.NumberFormat('bn-BD', {

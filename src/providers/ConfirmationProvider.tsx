@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ConfirmationDialog from 'components/common/ConfirmationDialog';
 import React, { createContext, useRef, useState, useContext } from 'react';
 
