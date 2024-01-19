@@ -1,9 +1,11 @@
 import App from 'App';
 import { createBrowserRouter } from 'react-router-dom';
 import MainLayout from 'layout/MainLayout';
-import Home from 'pages/home/Home';
 import paths from './paths';
 import Users from 'pages/users/Users';
+import SignIn from 'pages/auth/SignIn';
+import SignUp from 'pages/auth/SignUp';
+import { AuthProtectedRoute, GuestProtectedRoute } from 'components/auth/ProtectedRoute';
 // import Test from 'pages/users/Test';
 
 export const routes = [
@@ -15,13 +17,28 @@ export const routes = [
         element: <MainLayout />,
         children: [
           {
-            index: true,
-            element: <Home />,
+            element: <AuthProtectedRoute />,
+            children: [
+              {
+                index: true,
+                element: <Users />,
+              },
+            ],
           },
           {
-            path: paths.users,
-            element: <Users />,
+            element: <GuestProtectedRoute />,
+            children: [
+              {
+                path: paths.signin,
+                element: <SignIn />,
+              },
+              {
+                path: paths.signup,
+                element: <SignUp />,
+              },
+            ],
           },
+
           // {
           //   path: 'test',
           //   element: <Test />,

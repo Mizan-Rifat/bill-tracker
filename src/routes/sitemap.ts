@@ -11,7 +11,7 @@ export interface MenuItem {
 const sitemap: MenuItem[] = [
   {
     label: 'Users',
-    path: paths.users,
+    path: paths.root,
     pathName: 'users',
   },
   {
