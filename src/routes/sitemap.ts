@@ -15,9 +15,14 @@ const sitemap: MenuItem[] = [
     pathName: 'users',
   },
   {
-    label: 'Test',
-    path: paths.test,
-    pathName: 'test',
+    label: 'Dish Bills',
+    path: paths.dish_bills,
+    pathName: 'dish_bills',
+  },
+  {
+    label: 'Wifi Bills',
+    path: paths.wifi_bills,
+    pathName: 'wifi_bills',
   },
 ];
 

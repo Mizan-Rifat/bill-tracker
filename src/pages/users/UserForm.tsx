@@ -13,7 +13,7 @@ const UserForm = ({ formId, onComplete }: { formId: string; onComplete: () => vo
     handleSubmit,
     reset,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext<User>();
 
   const { addUser } = useAddUser(setIsLoading);
   const { updateUser } = useUpdateUser(setIsLoading);
@@ -23,8 +23,12 @@ const UserForm = ({ formId, onComplete }: { formId: string; onComplete: () => vo
       if (formId === 'add_user') {
         await addUser(data);
       } else {
-        const { uuid, amount, ...rest } = data;
-        await updateUser(uuid, { ...rest, amount: Number(amount) } as User);
+        const { id, dish_amount, wifi_amount, ...rest } = data;
+        await updateUser(id, {
+          ...rest,
+          dish_amount: Number(dish_amount),
+          wifi_amount: Number(wifi_amount),
+        } as User);
       }
       reset();
 
@@ -53,11 +57,20 @@ const UserForm = ({ formId, onComplete }: { formId: string; onComplete: () => vo
             {...register('details', { required: 'This field is required' })}
           />
           <TextField
-            label="Amount"
-            error={!!errors.amount}
+            label="Dish Amount"
+            error={!!errors.dish_amount}
             type="number"
-            helperText={<>{errors.amount?.message}</>}
-            {...register('amount', { required: 'This field is required' })}
+            defaultValue={0}
+            helperText={<>{errors.dish_amount?.message}</>}
+            {...register('dish_amount')}
+          />
+          <TextField
+            label="Wifi Amount"
+            error={!!errors.wifi_amount}
+            type="number"
+            defaultValue={0}
+            helperText={<>{errors.wifi_amount?.message}</>}
+            {...register('wifi_amount')}
           />
         </Stack>
       </form>

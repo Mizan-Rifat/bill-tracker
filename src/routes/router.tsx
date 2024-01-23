@@ -6,6 +6,8 @@ import Users from 'pages/users/Users';
 import SignIn from 'pages/auth/SignIn';
 import SignUp from 'pages/auth/SignUp';
 import { AuthProtectedRoute, GuestProtectedRoute } from 'components/auth/ProtectedRoute';
+import DishBills from 'pages/bills/DishBills';
+import WifiBills from 'pages/bills/WifiBills';
 // import Test from 'pages/users/Test';
 
 export const routes = [
@@ -23,6 +25,14 @@ export const routes = [
                 index: true,
                 element: <Users />,
               },
+              {
+                path: paths.dish_bills,
+                element: <DishBills />,
+              },
+              {
+                path: paths.wifi_bills,
+                element: <WifiBills />,
+              },
             ],
           },
           {
@@ -38,11 +48,6 @@ export const routes = [
               },
             ],
           },
-
-          // {
-          //   path: 'test',
-          //   element: <Test />,
-          // },
         ],
       },
     ],

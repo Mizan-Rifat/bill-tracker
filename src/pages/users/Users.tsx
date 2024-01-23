@@ -1,12 +1,12 @@
 import Box from '@mui/material/Box';
 import { DataGrid, GridColDef, GridToolbar, GridToolbarContainer } from '@mui/x-data-grid';
 import AddUser from './AddUser';
-import useUsersFetch from 'hooks/firebase/useUsersFetch';
 import ActionButtons from './ActionButtons';
 import { useUsersStore } from 'services/stores/usersStore';
 import { Button } from '@mui/material';
+import { User } from 'types';
 
-const columns: GridColDef[] = [
+const columns: GridColDef<User>[] = [
   { field: 'id', headerName: 'ID', width: 30 },
   {
     field: 'name',
@@ -19,16 +19,23 @@ const columns: GridColDef[] = [
     width: 200,
   },
   {
-    field: 'amount',
-    headerName: 'amount',
-    width: 100,
-    renderCell: (params) => `${params.row.amount} /-`,
+    field: 'dish_amount',
+    headerName: 'Dish amount',
+    width: 90,
+    renderCell: (params) => `${params.row.dish_amount} /-`,
+  },
+  {
+    field: 'wifi_amount',
+    headerName: 'Wifi amount',
+    width: 90,
+    renderCell: (params) => `${params.row.wifi_amount} /-`,
   },
   {
     field: 'actions',
     type: 'actions',
     headerName: 'Actions',
     width: 100,
+    flex: 1,
     cellClassName: 'actions',
     getActions: ActionButtons,
   },
@@ -51,13 +58,12 @@ const CustomToolbar = (props) => {
 };
 
 const Users = () => {
-  const { rows, setIsLoading, isLoading } = useUsersStore();
-  useUsersFetch(setIsLoading);
+  const { rows, isLoading } = useUsersStore();
 
   return (
     <Box sx={{ width: '100%' }}>
       <AddUser />
-      <Box sx={{ height: 400 }}>
+      <Box>
         <DataGrid
           rows={rows}
           loading={isLoading}
@@ -68,6 +74,9 @@ const Users = () => {
           disableDensitySelector
           disableVirtualization
           disableColumnMenu
+          columnVisibilityModel={{
+            id: false,
+          }}
           slots={{ toolbar: CustomToolbar }}
           slotProps={{
             toolbar: {

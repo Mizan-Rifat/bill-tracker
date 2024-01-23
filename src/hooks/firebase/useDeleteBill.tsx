@@ -2,9 +2,12 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { DOC_PATHS, db } from 'services/firebase';
 
-const useUserDelete = (setIsLoading: (loading: boolean) => void) => {
-  const deleteUser = async (id: string) => {
-    const docRef = doc(db, DOC_PATHS.USERS, id);
+const useBillDelete = (setIsLoading: (loading: boolean) => void) => {
+  const deleteBill = async (id: string, type: 'dish' | 'wifi') => {
+    const path = type === 'dish' ? DOC_PATHS.DISH_BILLS : DOC_PATHS.WIFI_BILLS;
+
+    const docRef = doc(db, path, id);
+
     setIsLoading(true);
     try {
       const item = await deleteDoc(docRef);
@@ -17,7 +20,7 @@ const useUserDelete = (setIsLoading: (loading: boolean) => void) => {
     setIsLoading(false);
   };
 
-  return { deleteUser };
+  return { deleteBill };
 };
 
-export default useUserDelete;
+export default useBillDelete;

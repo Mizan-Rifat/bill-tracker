@@ -45,7 +45,7 @@ const MainLayout = (props: Props) => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Bill Tracker <Typography variant="caption">v1.0.0</Typography>
       </Typography>
       <Divider />
       <List>
@@ -68,7 +68,7 @@ const MainLayout = (props: Props) => {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex', maxWidth: 480, m: '0 auto' }}>
+    <Box sx={{ display: 'flex', maxWidth: 680, m: '0 auto' }}>
       <AppBar component="nav">
         <Toolbar>
           <IconButton
@@ -85,7 +85,7 @@ const MainLayout = (props: Props) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            Bill Tracker <Typography variant="caption">v1.0.0</Typography>
           </Typography>
           <Box sx={{ ml: 'auto' }}>
             <IconButton size="large" onClick={handleMenu} color="inherit">

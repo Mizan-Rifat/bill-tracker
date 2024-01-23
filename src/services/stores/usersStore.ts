@@ -11,6 +11,7 @@ interface UsersState {
   rowModesModel: GridRowModesModel;
   isLoading: boolean;
   openAddModal: boolean;
+  usersMap: { [key: string]: User };
 
   setRows: (rows: Row[]) => void;
   setRowModesModel: (rowModesModel: GridRowModesModel) => void;
@@ -23,8 +24,15 @@ export const useUsersStore = create<UsersState>((set) => ({
   rowModesModel: {},
   isLoading: false,
   openAddModal: false,
+  usersMap: {},
+  setRows: (rows) => {
+    const usersMap = rows.reduce((acc, row) => {
+      acc[row.id] = row;
+      return acc;
+    }, {});
 
-  setRows: (rows) => set({ rows }),
+    return set({ rows, usersMap });
+  },
   setRowModesModel: (rowModesModel) => set({ rowModesModel }),
   setIsLoading: (isLoading) => set({ isLoading }),
   setOpenModal: (open) => set({ openAddModal: open }),

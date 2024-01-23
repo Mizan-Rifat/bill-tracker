@@ -2,11 +2,16 @@
 import { doc, updateDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { DOC_PATHS, db } from 'services/firebase';
-import { User } from 'types';
 
-const useUpdateUser = (setIsLoading: (loading: boolean) => void) => {
-  const updateUser = async (id: string, data: User) => {
-    const docRef = doc(db, DOC_PATHS.USERS, id);
+const useUpdateBill = (setIsLoading: (loading: boolean) => void) => {
+  const updateBill = async (
+    id: string,
+    data: { paid: number; due: number; created_at: Date | string },
+    type: 'dish' | 'wifi',
+  ) => {
+    const path = type === 'dish' ? DOC_PATHS.DISH_BILLS : DOC_PATHS.WIFI_BILLS;
+
+    const docRef = doc(db, path, id);
     setIsLoading(true);
 
     try {
@@ -21,7 +26,7 @@ const useUpdateUser = (setIsLoading: (loading: boolean) => void) => {
     setIsLoading(false);
   };
 
-  return { updateUser };
+  return { updateBill };
 };
 
-export default useUpdateUser;
+export default useUpdateBill;

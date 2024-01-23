@@ -32,4 +32,6 @@ export const currentUser = auth.currentUser;
 
 export const DOC_PATHS = {
   USERS: 'users',
+  DISH_BILLS: 'dish_bills',
+  WIFI_BILLS: 'wifi_bills',
 };

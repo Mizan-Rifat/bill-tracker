@@ -1,4 +1,3 @@
-import { useTheme } from '@mui/material';
 import AppBackdrop from 'components/common/AppBackdrop';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -10,8 +9,6 @@ import { useAuthStore } from 'services/stores/useAuthStore';
 const App = () => {
   const [loading, setLoading] = useState(true);
 
-  const theme = useTheme();
-  console.log({ theme: theme });
   const { setCurrentUser } = useAuthStore();
 
   useEffect(() => {
